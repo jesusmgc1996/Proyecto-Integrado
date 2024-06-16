@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('consulting_rooms', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->string('photo');
             $table->string('description');
             $table->timestamps();
         });

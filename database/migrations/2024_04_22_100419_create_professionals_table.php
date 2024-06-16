@@ -13,22 +13,22 @@ return new class extends Migration
     {
         Schema::create('professionals', function (Blueprint $table) {
             $table->id();
-            $table->string('dni', 9);
+            $table->string('dni', 9)->unique();
             $table->string('name');
-            $table->string('firstSurname');
-            $table->string('secondSurname');
+            $table->string('surname');
             $table->string('photo');
-            $table->string('phoneNumber');
-            $table->string('email');
+            $table->string('phoneNumber')->unique();
+            $table->string('email')->unique();
             $table->string('schedule');
             $table->string('education');
             $table->string('experience');
             $table->unsignedBigInteger('specialty_id');
+            $table->unsignedBigInteger('consultingRoom_id');
             $table->foreign('specialty_id')->references('id')->on('specialties')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('consultingRoom_id')->references('id')->on('consulting_rooms')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
