@@ -35,6 +35,7 @@ class AppointmentCreate extends Component
         $this->professionals = Professional::where('specialty_id', $specialtyId)->get();
         $this->professionalId = null;
         $this->selectedProfessional = null;
+        $this->time = null;
     }
 
     public function updatedSelectedProfessional($professionalId)
@@ -42,6 +43,7 @@ class AppointmentCreate extends Component
         $this->professionalId = $professionalId;
         $this->selectedDate = null;
         $this->date = null;
+        $this->time = null;
     }
 
     public function updatedSelectedDate($date)

@@ -42,18 +42,24 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         try {
-            $appointment = new Appointment();
-            $appointment->date = $request->date;
-            $appointment->time = $request->time;
-            if ($request->observations) {
-                $appointment->observations = $request->observations;
-            } else {
-                $appointment->observations = "";
-            }
-            $appointment->user_id = Auth::id();
-            $appointment->professional_id = $request->professional;
+            $appointment = Appointment::withTrashed()->where('date', $request->date)->where('time', $request->time)->where('professional_id', $request->professional)->first();
 
-            $appointment->save();
+            if ($appointment) {
+                $appointment->restore();
+            } else {
+                $appointment = new Appointment();
+                $appointment->date = $request->date;
+                $appointment->time = $request->time;
+                if ($request->observations) {
+                    $appointment->observations = $request->observations;
+                } else {
+                    $appointment->observations = "";
+                }
+                $appointment->user_id = Auth::id();
+                $appointment->professional_id = $request->professional;
+                
+                $appointment->save();
+            }
 
             return to_route('appointment.index')->with('status', 'Cita solicitada correctamente');
         } catch (QueryException $e) {

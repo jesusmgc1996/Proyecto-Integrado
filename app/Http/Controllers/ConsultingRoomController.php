@@ -13,7 +13,7 @@ class ConsultingRoomController extends Controller
     public function index()
     {
         $consultingRooms = ConsultingRoom::all();
-        $route = 'storage/img_facilities/';
+        $route = 'images/img_facilities/';
         return view('facilities')->with('consultingRooms', $consultingRooms)->with('route', $route);
     }
 }

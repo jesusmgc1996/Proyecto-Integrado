@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.img-professional {
+    height: 500px;
+}
+
+.img-professional-card {
+    height: 300px;
+}
+
+.logo {
+    height: 50px;
+    width: 100px;
+}
+
+.img-consultingRoom {
+    height: 210px;
+}
+
+.logo-principal {
+    height: 400px;
+}
