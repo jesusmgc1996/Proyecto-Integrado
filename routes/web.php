@@ -27,6 +27,6 @@ Route::get('/facilities', [ConsultingRoomController::class, 'index'])->name('fac
 
 Route::get('/{any}', function () {
     return redirect()->route('index');
-})->where('any', '^(?!login$|register$).*$');
+})->where('any', '^(?!login$|register$|password/reset$).*$');
 
 require __DIR__.'/auth.php';
